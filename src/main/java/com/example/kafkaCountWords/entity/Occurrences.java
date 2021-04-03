@@ -19,11 +19,6 @@ public class Occurrences {
 
     @Override
     public String toString() {
-        return occurrencesList.toString();
-//        String result = "";
-//        occurrencesList.forEach( s -> {
-//            result.concat(s.toString());
-//        });
-//        return result;
+        return occurrencesList.toString() + "\n";
     }
 }

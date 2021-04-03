@@ -19,8 +19,12 @@ public class AggregatorService {
         aggregations.combineWordCounter(aggregator);
     }
 
-    @Override
-    public String toString() {
-        return aggregations.toString();
+    public void deleteAllAggregations() {
+        aggregations.deleteAllWordCounters();
     }
+
+//    @Override
+//    public String toString() {
+//        return aggregations.toString();
+//    }
 }

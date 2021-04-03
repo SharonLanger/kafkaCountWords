@@ -25,13 +25,13 @@ public class Aggregator {
         });
     }
 
+    public void deleteAllWordCounters() {
+        wordCounter.clear();
+        printResults = false;
+    }
+
     @Override
     public String toString() {
         return wordCounter.toString();
-//        String result = "";
-//        wordCounter.forEach((word, occurrences) -> {
-//            result.concat(String.format("%s --> [%s]", word,occurrences));
-//        });
-//        return result;
     }
 }

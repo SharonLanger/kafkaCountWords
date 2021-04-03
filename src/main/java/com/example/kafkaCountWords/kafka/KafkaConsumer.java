@@ -2,7 +2,6 @@ package com.example.kafkaCountWords.kafka;
 
 import com.example.kafkaCountWords.entity.Aggregator;
 import com.example.kafkaCountWords.entity.MainReader;
-import com.example.kafkaCountWords.entity.Occurrences;
 import com.example.kafkaCountWords.service.AggregatorService;
 import com.example.kafkaCountWords.service.MatcherService;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +12,6 @@ import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -56,11 +54,11 @@ public class KafkaConsumer {
             @Header(KafkaHeaders.RECEIVED_PARTITION_ID) int partition) {
         if ( aggregator.getPrintResults() ) {
             System.out.println(aggregatorService.toString());
+            aggregatorService.deleteAllAggregations();
         } else {
             aggregatorService.combineAggregations(aggregator);
         }
         log.debug("getMsgFromAggregatorTopic: partition: {}. {}", partition, aggregator.toString());
-        log.info("getMsgFromAggregatorTopic: partition: {}. {}", partition, aggregator.toString());
     }
 
 }
