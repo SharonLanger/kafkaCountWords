@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class AggregatorService {
 
     @Autowired
-    Aggregator aggregations = new Aggregator();
+    Aggregator aggregations;
 
     public void combineAggregations(Aggregator aggregator) {
         aggregations.combineWordCounter(aggregator);
@@ -23,8 +23,8 @@ public class AggregatorService {
         aggregations.deleteAllWordCounters();
     }
 
-//    @Override
-//    public String toString() {
-//        return aggregations.toString();
-//    }
+    @Override
+    public String toString() {
+        return aggregations.toString();
+    }
 }

@@ -45,11 +45,11 @@ public class MatcherService {
         Arrays.stream(mainReader.getPayload().split("\n")).collect(Collectors.toList()).stream().forEach(line -> {
             int index = line.toLowerCase().indexOf(word.toLowerCase());
             if ( index != -1 ) {
-                occurrences.addOccurrence(new Occurrence()
-                    .setLineOffset(mainReader.getPageNumber() * lineBufferSize + lineItr.get())
-                    .setCharOffset(index));
-                log.info("Found a match in:{}",line);
-                log.info("The word:{} is on index:{}", word, index);
+                Occurrence occurrence = new Occurrence()
+                        .setLineOffset(mainReader.getPageNumber() * lineBufferSize + lineItr.get())
+                        .setCharOffset(index);
+                occurrences.addOccurrence(occurrence);
+                log.debug("{}: {}", word,occurrence.toString());
             }
             lineItr.updateAndGet(v -> v + 1);
         });
