@@ -3,7 +3,6 @@ package com.example.kafkaCountWords;
 
 import com.example.kafkaCountWords.entity.Aggregator;
 import com.example.kafkaCountWords.entity.MainReader;
-import com.example.kafkaCountWords.entity.Occurrences;
 import com.example.kafkaCountWords.service.MainReaderService;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
@@ -12,7 +11,6 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
@@ -28,6 +26,7 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class KafkaConfiguration {
+
     @Value("${topic.reader.name}")
     private String topicReader;
 
@@ -39,6 +38,10 @@ public class KafkaConfiguration {
 
     @Value("${topic.aggregator.partitions}")
     private String aggregatorPartitions;
+
+//=============================================================
+//=============================================================
+//=============================================================
 
     @Bean
     public MainReader mainReader() {
@@ -56,7 +59,7 @@ public class KafkaConfiguration {
     }
 
 //=============================================================
-//=============================================================
+//============== MAIN READER KAFKA CONFIG =====================
 //=============================================================
 
     @Bean
@@ -93,9 +96,9 @@ public class KafkaConfiguration {
                 .build();
     }
 
-
-//  AGGREGATOR KAFKA CONFIG
-//  =======================
+//=============================================================
+//============== AGGREGATOR KAFKA CONFIG ======================
+//=============================================================
 
     @Bean
     public ProducerFactory<String, Aggregator> producerFactoryAggregator() {
@@ -128,12 +131,10 @@ public class KafkaConfiguration {
                 .build();
     }
 
+//  =====================================================================
+//  =====================================================================
+//  =====================================================================
 
-
-//  =====================================================================
-//  =====================================================================
-//  =====================================================================
-//  =====================================================================
     private static Map<String, Object> defaultProducerConfig() {
         Map<String, Object> config = new HashMap<>();
 
