@@ -1,5 +1,5 @@
 # kafkaCountWords
-bigID count names in a file with two topics and multiple consumers
+Count names(words) in a file asynchronously with two topics and multiple consumers
 
 ### How to run:
 - Run the app and trigger via REST API www.localhost:8080/main/count
